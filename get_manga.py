@@ -1,4 +1,4 @@
-# 下载芝士漫画里的章节，找到该漫画的章节链接，可选是否选择下一章漫画或者下载新的url
+# 下载芝士漫画里的章节，找到该漫画的某一章节章节链接，可自动选择下一章漫画或者下载新的url
 import requests
 import sys
 import io
@@ -110,25 +110,19 @@ if __name__ == "__main__":
     begin()
     boolean = "y"
     count = 0
+    if not os.path.exists(current_dir + '\\pdf\\'):
+        os.makedirs(current_dir + '\\pdf\\')
     while(boolean == "y"):
         text = get_text(url).text
-        # with open("test.html", "r", encoding='utf-8') as f:
-        #     text = f.read()
-        #     f.close()
         next_chapter = parse_text(text)
 
-        # 放图片的文件夹不能有除图片外文件
-        # pdf_boolean = input("是否生成pdf文件(y/n)\n>>>")
-        pdf_boolean = 'y'
-
-        if(pdf_boolean == 'y'):
-            img_path = current_dir + '\\' + chapter
-            pdf_path = current_dir + '\\pdf\\' + chapter + '.pdf'
-            #　有些图片是错误，导致无法生成pdf文件。
-            try:
-                convert_images_to_pdf(img_path, pdf_path)
-            except Exception as e:
-                print(e)
+        img_path = current_dir + '\\' + chapter
+        pdf_path = current_dir + '\\pdf\\' + chapter + '.pdf'
+        #　有些图片是错误，会导致无法生成pdf文件。
+        try:
+            convert_images_to_pdf(img_path, pdf_path)
+        except Exception as e:
+            print(e)
         re_object = re.match(
             "https://manhua.zsh8.com/.*?/(.*?)/.*?html", next_chapter)
         chapter = re_object.group(1)
@@ -139,13 +133,3 @@ if __name__ == "__main__":
         if (count > 37):
             break
         url = next_chapter
-        # boolean = input("是否继续下载下一章节?(y/n)\n>>>")
-        # if(boolean != "y"):
-        #     other_boolean = input("是否输入其它链接?(y/n)\n>>>")
-        #     if(other_boolean == "y"):
-        #         begin()
-        #         boolean = "y"
-        #     else:
-        #         input("🧛‍♀️")
-        # else:
-        #     url = next_chapter
