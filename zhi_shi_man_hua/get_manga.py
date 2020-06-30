@@ -12,6 +12,7 @@ from reportlab.pdfgen import canvas
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf8')
 
+
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:76.0) Gecko/20100101 Firefox/76.0"
 }
@@ -24,24 +25,22 @@ re_object = re.match(
     "https://manhua.zsh8.com/.*?/(.*?)/.*?html", url)
 chapter = re_object.group(1)
 
-# 当前目录
+# 文件当前目录
 current_dir = os.getcwd()
 
 
-# 得到返回文件
+# 得到返回的资源
 def get_text(url):
     response = requests.get(url, headers=headers)
     return response
 
 
-# 分析文档
+# 分析文档，保存图片，并得到下一章的url
 def parse_text(text):
     # 建立解析
     html = etree.HTML(text, etree.HTMLParser())
-    # 获取下一章节的links
+    # 获取漫画图片的链接
     links = html.xpath("//div[@id='gallery-1']//dt/a/@href")
-    # 获取class="gallery-1"的div标签下的dt标签，再获取链接。
-    dts = html.xpath("//dt[@class='gallery-icon portrait']")
     for i, link in enumerate(links):
         save_image(link, i)
         # 降低访问的速度，防止被识别为机器人
@@ -63,9 +62,12 @@ def parse_text(text):
 # 保存图片
 def save_image(link, index):
     read = requests.get(link)
+    # 当前文件夹的加上章节名形成新的文件夹
     dir_ = current_dir + '\\' + chapter
+    # 创建文件夹
     if not os.path.exists(dir_):
         os.makedirs(dir_)
+    # 保存图片
     with open(dir_ + '\\{}'.format(str(index)+".jpg"), 'wb') as fp:
         fp.write(read.content)
         fp.close()
@@ -86,7 +88,7 @@ def convert_images_to_pdf(img_path, pdf_path):
     c.save()
 
 
-# 开始
+# 开始，并更新全局变量名
 def begin():
     global url
     global re_object
@@ -98,9 +100,11 @@ def begin():
         "https://manhua.zsh8.com/.*?/(.*?)/.*?html", local_url)
     if (re_object):
         url = local_url
+        # 更新章节名
         re_object = re.match(
             "https://manhua.zsh8.com/.*?/(.*?)/.*?html", url)
         chapter = re_object.group(1)
+        
         print("即将开始.....")
     else:
         print("输入错误！将使用默认链接！\n")
