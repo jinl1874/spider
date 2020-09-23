@@ -56,8 +56,8 @@ pip install lxml
 在 `/spider/document.py parse_pag()` 设置下载后的文件夹的位置：
 
 ```python
-	# 放置文档的地方，可更改 
-    base_path = r'D:\web\django-doc'
+# 放置文档的地方，可更改 
+base_path = r'D:\web\django-doc'
 ```
 
 然后使用 PowerShell 进入scrapy的最高目录，输入`scrapy crawl django-doc`并回车。

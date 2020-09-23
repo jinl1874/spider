@@ -9,6 +9,8 @@
 
 ### 项目
 
-1. [获取 bing 首页的图片](https://github.com/jinl1874/spider/tree/master/bing_img)
-2. [获取芝士漫画里的图片并生成 pdf](https://github.com/jinl1874/spider/tree/master/zhi_shi_man_hua)
+1. [获取 bing 首页的图片](./bing_img)
+2. [获取芝士漫画里的图片并生成 pdf](./zhishi_manga)
 3. [scrapy 爬取 django 中文文档](./django_document)
+4. [获取豆瓣当前地区上映的电影](./douban.movie)
+
