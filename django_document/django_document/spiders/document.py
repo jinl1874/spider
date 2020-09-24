@@ -53,7 +53,7 @@ class DocumentDownload(scrapy.Spider):
         sub_text = re.sub(
             r'\.\./\.\./', r'https://docs.djangoproject.com/zh-hans/3.0/', sub_text)
         sub_text = re.sub(
-            r'\.\./', r'https://docs.djangoproject.com/zh-hans/3.0/intro', sub_text)
+            r'\.\./', r'https://docs.djangoproject.com/zh-hans/3.0/intro/', sub_text)
         sub_text = re.sub(r'\[(.*?)\]\(#.*?\)', r'\1', sub_text)
         sub_text = re.sub(r'<pre.*?>', r'```python\n', sub_text)
         sub_text = re.sub(r'</pre>', r'```', sub_text)

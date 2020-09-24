@@ -13,4 +13,4 @@
 2. [获取芝士漫画里的图片并生成 pdf](./zhishi_manga)
 3. [scrapy 爬取 django 中文文档](./django_document)
 4. [获取豆瓣当前地区上映的电影](./douban.movie)
-
+5. [多线程爬取文库的图片](./get_wenku_img)
