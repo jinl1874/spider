@@ -42,19 +42,6 @@ def parse_page(url: str):
     html = etree.HTML(response.text)
     title = html.xpath("//div[@id='title']/text()")[0]
     image_links = html.xpath('//div[@id="content"]//a/@href')
-    # for link in image_links:
-    #     save_img(link, title)
-    # mid = int(len(image_links)/2)
-    # p1 = threading.Thread(target=save_img, args=(image_links[0:mid], title))
-    # p2 = threading.Thread(target=save_img, args=(image_links[mid:], title))
-
-    # p1.setDaemon(True)
-    # p1.start()
-    # p2.setDaemon(True)
-    # p2.start()
-
-    # p1.join()
-    # p2.join()
     return image_links, title
 
 
