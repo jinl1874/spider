@@ -10,7 +10,8 @@ from lxml import etree
 from queue import Queue
 
 headers = {
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0'}
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0',
+}
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf8')
 
@@ -62,7 +63,7 @@ def save_img(link, path_name):
 
 def main():
     queue = Queue()
-    url = "https://www.wenku8.net/novel/1/1546/74570.htm"
+    url = "https://www.wenku8.net/novel/1/1009/38898.htm"
     urls, title = parse_page(url)
     for i in urls:
         queue.put(i)
