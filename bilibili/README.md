@@ -1,6 +1,7 @@
-## 详细解析爬取 bilibili 的视频、弹幕以及封面
+#! https://zhuanlan.zhihu.com/p/300700424
+![Image](https://pic4.zhimg.com/80/v2-7845078e3c79cca06685bd947ee64e1f.jpg)
 
-## 视频
+# 详细解析 Python 爬取 bilibili 的视频、弹幕以及封面
 
 ### 环境
 
@@ -50,7 +51,7 @@ with open('test.flv', 'wb') as fp:
     fp.write(res.content)
 ```
 
-然而请求之后发现是 flv 空的，再看一下发回的请求文本，显示 403 禁止错误：
+然而请求之后发现 flv 文件是空的，再看一下发回的请求文本，显示 403 禁止错误：
 
 ```html
 <html>
@@ -167,7 +168,7 @@ with open('test.flv, 'wb') as fp:
 
 ### 弹幕
 
-要获取 B 站的弹幕，首先得知道 B 站的弹幕文件是从哪加载的。B 站的弹幕文件放在(http://comment.bilibili.com/{cid}.xml)，所以要获取弹幕，就要获取B站的视频的cid。
+要获取 B 站的弹幕，首先得知道 B 站的弹幕文件是从哪加载的。B 站的弹幕文件放在`http://comment.bilibili.com/{cid}.xml`，所以要获取弹幕，就要获取 B 站的视频的 cid。
 视频的 cid 号在页面也可以找到，所以用正则表达式提取。
 ![Image](https://pic4.zhimg.com/80/v2-135f61b5a63426a2195d960aca66ac3d.png)
 
