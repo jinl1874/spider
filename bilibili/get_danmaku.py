@@ -8,7 +8,7 @@ header = {
 
 def get_cid_name(url):
     response = requests.get(url, headers=header)
-    text = response.text # 获取cid
+    text = response.text  # 获取cid
     cid_obj = re.search(r'cid=([\d]+)', text)
     # 获取视频名
     name_obj = re.search(
@@ -16,9 +16,8 @@ def get_cid_name(url):
     name = name_obj(1)
     return cid_obj.group(1), name_obj(1)
 
+
 # 保存文件
-
-
 def save(url, name):
     response = requests.get(url, headers=header)
     # 不设置编码的话会导致乱码

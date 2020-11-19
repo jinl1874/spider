@@ -157,7 +157,6 @@ def merge(video_name, audio_name, index, path):
     video = VideoFileClip(video_name)
     audio = AudioFileClip(audio_name)
     new_video = video.set_audio(audio)
-    # new_video.write_videofile("video.mp4")
     new_video.to_videofile(os.path.join(
         path, '{}.mp4'.format(index)), fps=24, remove_temp=False)
     os.remove(video_name)
